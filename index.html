@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Poker - OFFLINE</title>
+    <!-- FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <!-- STYLE -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style type="text/css" media="screen">
+      * {
+        font-family: 'Montserrat', sans-serif !important;
+      }
+      #cards {
+        display: inline-block;
+      }
+      body {
+        background-color: #17223b;
+        overflow-x: hidden;
+        overflow-y: hidden;
+      }
+      .card {
+        height: 180px;
+        width: auto;
+      }
+      #myCards {
+        left: 50%;
+        margin-left: -127.78px;
+        text-align: center;
+        position: absolute;
+        bottom: 2%;
+      }
+      .button {
+        background-color: #ff6768;
+        border: 1px solid #6b778d;
+        border-radius: 5px;
+        padding: 10px 20px;
+      }
+      #mainMenu {
+        margin-top: 150px;
+        text-align: center;
+      }
+      #mainMenuHeader {
+        font-weight: bolder;
+        color:#ff6768;
+        text-shadow: 1px solid #6b778d;
+      }
+      #mainMenuSubHeader {
+        font-weight: 100;
+        color: #484d57;
+      }
+      .playButton {
+        padding: 10px 20px;
+        background-color: #6b778d;
+        border: 2px solid #575f6d;
+        border-radius: 5px;
+        text-align: center;
+        font-size: 200%;
+        position: relative;
+        width: 300px;
+        margin-bottom: 5px;
+      }
+      #game {
+        height: 98%;
+        margin-top: 0.6%;
+        width: 98%;
+        margin-left: 1.1%;
+        border-radius: 5px;
+        background-color: #076324;
+        display: block;
+      }
+      #mainMenuButtons {
+        display: inline;
+      }
+      #loading {
+        display: none;
+      }
+      #loadingInner {
+        margin: auto;
+      }
+      #communityCards {
+        left: 50%;
+        margin-left: -319.453px;
+        text-align: center;
+        position: absolute;
+        top: 30%;
+      }
+      #communityCardsOutline {
+        position: absolute;
+        left: 50%;
+        top: 30%;
+        margin: 10px;
+        margin-left: -319.453px;
+        margin-top: -9px;
+        border: 2px solid #daa520;
+        border-radius: 5px;
+      }
+      #currentServerPlayers {
+        /*display: none;*/
+        text-align: center;
+        opacity: 0.7;
+        position: relative;
+        background-color: black;
+        border-radius: 4px;
+        color: white;
+        height: 100% !important;
+        width: 100%;
+        z-index: 1;
+      }
+      #betButtonGroup {
+        width: 100% !important;
+        text-align: center;
+      }
+      #money {
+        margin-bottom: 5px;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="mainMenu" style="display: none;">
+      <h1 id="mainMenuHeader">Poker</h1>
+      <h4 id="mainMenuSubHeader">A game made by Kakebiten</h4>
+      <br>
+      <br>
+      <ul id="mainMenuButtons">
+        <li><button class="playButton" id="joinButton">Join Server</button></li>
+        <li><button class="playButton" id="createServerButton">Create Server</button></li>
+        <li><button class="playButton" id="settingsButton">Settings</button></li>
+        <li><button class="playButton" id="quitButton">Quit</button></li>
+      </ul>
+    </div>
+    <div id="loading" style="display: none;">
+      <div id="loadingInner">
+
+      </div>
+    </div>
+    <div id="game">
+      <div id="currentServerPlayers" style="display: none;">
+        <h2 style="padding-top: 50px; margin: 0;">CURRENT PLAYERS (<span id="currentPlayersCount"></span>):</h3>
+        <br>
+        <ul id="currentPlayersList" style="list-style-type: none; margin: 0; padding: 0;"></ul>
+      </div>
+      <div id="communityCards"></div>
+      <div id="myCards">
+        <div id="betButtonGroup"></div>
+          <p id="money">Money:<br><span id="moneyAmount" value="5000000">5000000</span></p>
+          <input type="text" id="betInput" class="input-sm" oninput="this.value=this.value.replace(/(?![0-9])./gmi,'')">
+          <button id="betButton" class="btn btn-sm btn-block" style="width: 50%; align-self: center;">Bet</button>
+        </div>
+      </div>
+    <!-- You can also require other files to run in this process -->
+    <script>window.$ = window.jQuery = require('jquery')</script>
+    <script>const electron = require('electron');</script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="./titlebar.js"></script>
+    <!--<script src="./server.js"></script>-->
+    <script src="./sender.js"></script>
+    <script src="./whatCard.js"></script>
+    <script src="./renderer.js"></script>
+    <script src="./app.js"></script>
+    <script>
+      var SERVERCONNECTCODE = "";
+      var SERVERUSERNAME = "";
+      var MESSAGERESULT = "";
+      
+      electron.ipcRenderer.on("SERVERCONNECTCODE", (event, data) => {
+        serverConnectCodeMsg(event, data);
+      });    
+      
+      electron.ipcRenderer.on("SERVERUSERNAME", (event, data) => {
+        serverUsernameMsg(event, data);
+      });     
+    </script>
+  </body>
+</html>

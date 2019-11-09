@@ -1,0 +1,33 @@
+{
+  "name": "app",
+  "version": "0.0.1",
+  "description": "Poker App",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "Kakebiten",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^6.0.10",
+    "electron-packager": "^14.1.0",
+    "natives": "^1.1.6"
+  },
+  "dependencies": {
+    "agentkeepalive": "^4.0.2",
+    "axios": "^0.19.0",
+    "custom-electron-titlebar": "^3.1.0",
+    "electron-open-link-in-browser": "^1.0.2",
+    "express": "^4.17.1",
+    "jquery": "^3.4.1",
+    "ngrok": "^3.2.5"
+  }
+}

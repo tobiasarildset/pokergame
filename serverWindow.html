@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Server Picker</title>
+        <!-- FONTS -->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+        <!-- STYLE -->
+        <style type="text/css" media="screen">
+            * {
+                font-family: 'Montserrat', sans-serif;
+                overflow: hidden;
+            }
+            html {
+                overflow: hidden;
+            }
+            body {
+                background-color: #17223b;
+                overflow: hidden;
+            }
+            #buttons {
+                text-align: center;
+            }
+            button {
+                padding: 10px 20px;
+                background-color: #6b778d;
+                border: 2px solid #575f6d;
+                border-radius: 5px;
+                text-align: center;
+                position: relative;
+                width: fit-content;
+            }
+            #panelOuter {
+                margin: 5px;
+                height: 260px;
+            }
+            #panel {
+                background: #6b778d;
+                border-radius: 5px;
+                
+                height: 100%;
+                width: 100%;
+
+                text-align: center;
+            }
+            #serverSearch {
+                background-color: #838ea3;
+                border-radius: 5px;
+                width: 100%;
+                height: 219px;
+            }
+            .server {
+                padding: 0;
+                margin: 2px;
+            }
+            #serverSearchSettings {
+                display: inline-flex;
+                margin-top: 5px
+            }
+            #serverSearchSettings>#serverSearchButtons {
+                text-align: right;
+            }
+            #joinButton {
+                margin-left: 58px;
+            }
+            #IP {
+                padding: 10px;
+                border: 2px solid #575f6d;
+                border-radius: 5px;
+                text-align: center;
+                width: 110px;
+            }
+            ul {
+                position: absolute;
+                left: 76px;
+
+            }
+            #username {
+                margin-top: 30px;
+                width: 150px;
+                text-align: center;
+                padding: 10px 5px;
+                border-radius: 5px; 
+            }
+            #serverCode {
+                width: 150px;
+                text-align: center;
+                padding: 10px 5px;
+                border-radius: 5px; 
+            }
+            #serverConnect {
+                margin-top: 5px;
+                width: 164px;
+                text-align: center;
+                padding: 10px 5px;
+                border-radius: 5px;
+                background-color: #ff6768;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="panelOuter">
+            <div id="panel">
+                <ul>
+                    <li><input type="text" id="username" class="listObject" placeholder="Username"></li>
+                    <li><input type="text" id="serverCode" class="listObject" maxlength="8" placeholder="Game Code"></li>
+                    <li><button id="serverConnect" class="listObject">Connect</button></li>
+                </ul>
+            </div>
+        </div>
+        <script>window.$ = window.jQuery = require('jquery')</script>
+        <script src="titlebarServerPicker.js"></script>
+        <script>
+            const electron = require('electron');
+
+            $("#serverConnect").click(() => {
+                if($("#serverCode").val() == "" || $("#username").val() == "") {
+                    
+                } else {
+                    electron.ipcRenderer.send("SERVERCODE", $("#serverCode").val());
+                    electron.ipcRenderer.send("SERVERUSERNAME", $("#username").val());
+                }
+            });
+        </script>
+    </body>
+</html>
