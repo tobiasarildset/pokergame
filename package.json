@@ -27,7 +27,7 @@
     "custom-electron-titlebar": "^3.1.0",
     "electron-open-link-in-browser": "^1.0.2",
     "express": "^4.17.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "ngrok": "^3.2.5"
   }
 }
