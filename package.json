@@ -17,7 +17,7 @@
   "author": "Kakebiten",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^6.0.10",
+    "electron": "^9.4.0",
     "electron-packager": "^14.1.0",
     "natives": "^1.1.6"
   },
